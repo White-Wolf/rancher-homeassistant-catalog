@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 services:
   db:
     image: mysql:5.7.21
@@ -19,10 +19,7 @@ services:
       - db
     image: homeassistant/home-assistant:0.61.1
     volumes:
-      - ${CONFIG_VOL_NAME}:/config
-    {{- if (.Values.STORAGE_DRIVER) }}
-    volume_driver: ${STORAGE_DRIVER}
-    {{- end }}
+      - ha_config:/config
     ports:
       - ${HA_PORT}:8123
     {{- if or (.Values.DEV_ZWAVE) (.Values.DEV_RFXCOM) }}
@@ -45,9 +42,13 @@ services:
       - homeassistant
     image: causticlab/hass-configurator-docker
     volumes:
-      - ${CONFIG_CFG_VOL_NAME}:/config
-      - ${CONFIG_VOL_NAME}:/hass-config
-    {{- if (.Values.STORAGE_DRIVER) }}
-    volume_driver: ${STORAGE_DRIVER}
-    {{- end }}
+      - configurator_config:/config
+      - ha_config:/hass-config
     restart: always
+volumes:
+  ha_config:
+    name: ${CONFIG_VOL_NAME}
+    driver: ${STORAGE_DRIVER}
+  configurator_config:
+    name: ${CONFIG_CFG_VOL_NAME}
+    driver: ${STORAGE_DRIVER}
