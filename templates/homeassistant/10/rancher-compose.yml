@@ -12,6 +12,12 @@ version: '2'
      required: true
      type: 'int'
      default: 8123
+   - variable: 'CONFIGURATOR_PORT'
+     description: 'Port that the HASS Configurator should be available on'
+     label: 'HASS Configurator Port'
+     required: true
+     type: 'int'
+     default: 3218
    - variable: 'STORAGE_DRIVER'
      description: 'The storage driver to use for configuration volumes (eg. rancher-nfs or local).'
      label: 'Storage Driver'
