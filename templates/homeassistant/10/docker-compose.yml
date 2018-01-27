@@ -20,9 +20,9 @@ services:
     image: homeassistant/home-assistant:0.61.1
     volumes:
       - ${CONFIG_VOL_NAME}:/config
-    {- if (.Values.STORAGE_DRIVER) }
+    {{- if (.Values.STORAGE_DRIVER) }}
     volume_driver: ${STORAGE_DRIVER}
-    {- end }
+    {{- end }}
     ports:
       - ${HA_PORT}:8123
     {{- if or (.Values.DEV_ZWAVE) (.Values.DEV_RFXCOM) }}
@@ -43,11 +43,11 @@ services:
   hass_configurator:
     depends_on:
       - homeassistant
-    image: docker pull causticlab/hass-configurator-docker
+    image: causticlab/hass-configurator-docker
     volumes:
       - ${CONFIG_CFG_VOL_NAME}:/config
       - ${CONFIG_VOL_NAME}:/hass-config
-    {- if (.Values.STORAGE_DRIVER) }
+    {{- if (.Values.STORAGE_DRIVER) }}
     volume_driver: ${STORAGE_DRIVER}
-    {- end }
+    {{- end }}
     restart: always
