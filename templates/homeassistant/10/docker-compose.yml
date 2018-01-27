@@ -40,7 +40,7 @@ services:
   hassconfigurator:
     depends_on:
       - homeassistant
-    image: causticlab/hass-configurator-docker
+    image: causticlab/hass-configurator-docker:x86_64-0.2.4
     volumes:
       - configurator_config:/config
       - ha_config:/hass-config
