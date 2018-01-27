@@ -1,4 +1,4 @@
-version: '2.1'
+version: '2'
 services:
   db:
     image: mysql:5.7.21
@@ -47,8 +47,6 @@ services:
     restart: always
 volumes:
   ha_config:
-    name: ${CONFIG_VOL_NAME}
     driver: ${STORAGE_DRIVER}
   configurator_config:
-    name: ${CONFIG_CFG_VOL_NAME}
     driver: ${STORAGE_DRIVER}
