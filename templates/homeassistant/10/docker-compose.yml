@@ -47,8 +47,8 @@ services:
     restart: always
 {- if (.Values.STORAGE_DRIVER) }
 volumes:
-  ${CONFIG_VOL_NAME}:
+  - ${CONFIG_VOL_NAME}:
     driver: ${STORAGE_DRIVER}
-  ${CONFIG_CFG_VOL_NAME}:
+  - ${CONFIG_CFG_VOL_NAME}:
     driver: ${STORAGE_DRIVER}
 {- end }
