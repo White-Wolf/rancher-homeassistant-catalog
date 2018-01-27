@@ -3,7 +3,7 @@ services:
   appdaemon:
     image: acockburn/appdaemon:latest
     volumes:
-      - /var/lib/docker/volumes/ha_appdaemon:/conf
+      - ha_config:/conf
     ports:
       - ${PORT}:5050
     restart: always
