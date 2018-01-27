@@ -12,6 +12,24 @@ version: '2'
      required: true
      type: 'int'
      default: 8123
+   - variable: 'CONFIG_VOL_NAME'
+     description: 'Name of the storage volume to use for Home Assistant config. Must be a path if no storage driver is specified'
+     label: 'Config Volume Name'
+     required: true
+     type: 'string'
+     default: 'ha_config'
+   - variable: 'CONFIG_CFG_VOL_NAME'
+     description: 'Name of the storage volume to use for the Configurator config. Must be a path if no storage driver is specified'
+     label: 'Configurator Config Volume Name'
+     required: true
+     type: 'string'
+     default: 'configurator_config'
+   - variable: 'STORAGE_DRIVER'
+     description: 'Type of storage driver to use for configuration volume. Leave blank to use storage in container'
+     label: 'Storage Driver Type'
+     required: false
+     type: 'string'
+     default: 'rancher-nfs'
    - variable: 'MYSQL_PORT'
      description: 'MySQL Port'
      label: 'Leave empty for not exposing MySQL'
