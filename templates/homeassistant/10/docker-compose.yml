@@ -37,7 +37,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       TZ: ${TZ}
-  hass_configurator:
+  hassconfigurator:
     depends_on:
       - homeassistant
     image: causticlab/hass-configurator-docker
