@@ -20,6 +20,9 @@ services:
     image: homeassistant/home-assistant:0.61.1
     volumes:
       - ${CONFIG_VOL_NAME}:/config
+    {- if (.Values.STORAGE_DRIVER) }
+    volume_driver: ${STORAGE_DRIVER}
+    {- end }
     ports:
       - ${HA_PORT}:8123
     {{- if or (.Values.DEV_ZWAVE) (.Values.DEV_RFXCOM) }}
@@ -44,11 +47,7 @@ services:
     volumes:
       - ${CONFIG_CFG_VOL_NAME}:/config
       - ${CONFIG_VOL_NAME}:/hass-config
+    {- if (.Values.STORAGE_DRIVER) }
+    volume_driver: ${STORAGE_DRIVER}
+    {- end }
     restart: always
-{- if (.Values.STORAGE_DRIVER) }
-volumes:
-  - ${CONFIG_VOL_NAME}:
-    driver: ${STORAGE_DRIVER}
-  - ${CONFIG_CFG_VOL_NAME}:
-    driver: ${STORAGE_DRIVER}
-{- end }
